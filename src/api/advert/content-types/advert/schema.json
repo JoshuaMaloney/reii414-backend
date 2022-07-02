@@ -1,0 +1,68 @@
+{
+  "kind": "collectionType",
+  "collectionName": "adverts",
+  "info": {
+    "singularName": "advert",
+    "pluralName": "adverts",
+    "displayName": "Advert",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "condition": {
+      "type": "enumeration",
+      "enum": [
+        "poor",
+        "good",
+        "great",
+        "excellent"
+      ],
+      "required": true
+    },
+    "price": {
+      "type": "decimal",
+      "required": true
+    },
+    "creator": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::users-permissions.user",
+      "inversedBy": "adverts"
+    },
+    "comments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::comment.comment",
+      "mappedBy": "advert"
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "computer and electronics",
+        "books and courses",
+        "gaming",
+        "sport training"
+      ],
+      "required": true
+    }
+  }
+}
